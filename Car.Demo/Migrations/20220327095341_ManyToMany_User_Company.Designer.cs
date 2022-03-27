@@ -4,6 +4,7 @@ using Car.Demo.DLL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car.Demo.Migrations
 {
     [DbContext(typeof(CarDbContext))]
-    partial class CarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220327095341_ManyToMany_User_Company")]
+    partial class ManyToMany_User_Company
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,23 +98,6 @@ namespace Car.Demo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a9ac07e2-2402-480d-9b3e-fcd0da8d2f64"),
-                            Name = "Mercedes-benz"
-                        },
-                        new
-                        {
-                            Id = new Guid("bc0a09f3-0fdd-4a8b-a419-86235a775760"),
-                            Name = "Audi"
-                        },
-                        new
-                        {
-                            Id = new Guid("7ac01ada-b23d-4fa8-8b45-a5f6ef0847c8"),
-                            Name = "BMW"
-                        });
                 });
 
             modelBuilder.Entity("Car.Demo.DLL.Entities.Subscription", b =>
@@ -122,7 +108,7 @@ namespace Car.Demo.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
 
                     b.HasKey("UserId", "CompanyId");
@@ -176,7 +162,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("dd2e3a6b-ec8f-4e9f-a72c-57e08f779f58"),
                             Email = "c.basset@gmail.com",
-                            HashPassword = "$2a$11$mBD5iLx9j0n0LKzjfwNj2u6s/w1RlC7DC/qdvHbYNASR.WrIwZkJK",
+                            HashPassword = "$2a$11$ODAh77Yqny0FgseEfM96KOUKcgJwJmFNh0bBDdEQBOWV9FfRcH/mm",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Celeste Bassett",
                             PhoneNumber = "0683006027",
@@ -186,7 +172,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("26af7842-53e0-4680-96cb-8c02a696e59f"),
                             Email = "l.wilkins@gmail.com",
-                            HashPassword = "$2a$11$WHijd8LmNOMz6ztD79Nk3eqrPtF1wu3P.Egb1qDo1SAV0tnj98FZi",
+                            HashPassword = "$2a$11$nHm1.sI6peZi3BEx98Vkxuqko.QRPf49wz9niwItsjpMUeuqmmwW2",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Lacey Wilkins",
                             PhoneNumber = "0683006024",
@@ -196,7 +182,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("7e892c70-763f-456e-b392-cb9211e681d3"),
                             Email = "s.newman@gmail.com",
-                            HashPassword = "$2a$11$Hove00D5hZTc25mXhEwWL.WRbe.cd4PYUnW2HF3N5x/H.7pF7pmA.",
+                            HashPassword = "$2a$11$SGFsuUzN2i5SklK3g9qhjeim9BSo9IE1zaLKgctj01gw5iYEefwl.",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Safwan Newman",
                             PhoneNumber = "0683006024",

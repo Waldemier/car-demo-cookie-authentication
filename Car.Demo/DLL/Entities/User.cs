@@ -19,4 +19,8 @@ public class User: IEntity
     public DateTime LastChanged { get; set; }
     
     public ICollection<Car> Cars { get; set; } = new List<Car>();
+    
+    public ICollection<Company> Companies { get; set; } = new List<Company>();
+
+    public ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 }

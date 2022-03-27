@@ -17,9 +17,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity: class, IE
         return _context.Set<TEntity>();
     }
     
-    public async Task<TEntity?> GetByIdAsync(Guid Id) => 
-        await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id.Equals(Id));
-
     public async Task AddAsync(TEntity entity) =>
         await _context.Set<TEntity>().AddAsync(entity);
 

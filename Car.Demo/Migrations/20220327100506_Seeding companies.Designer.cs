@@ -4,6 +4,7 @@ using Car.Demo.DLL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car.Demo.Migrations
 {
     [DbContext(typeof(CarDbContext))]
-    partial class CarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220327100506_Seeding companies")]
+    partial class Seedingcompanies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace Car.Demo.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
 
                     b.HasKey("UserId", "CompanyId");
@@ -176,7 +179,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("dd2e3a6b-ec8f-4e9f-a72c-57e08f779f58"),
                             Email = "c.basset@gmail.com",
-                            HashPassword = "$2a$11$mBD5iLx9j0n0LKzjfwNj2u6s/w1RlC7DC/qdvHbYNASR.WrIwZkJK",
+                            HashPassword = "$2a$11$UveoDJT8ZbnwEE.B6dstBOciWVrCLNxhYixmX.FYTr6PaE37Fje0S",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Celeste Bassett",
                             PhoneNumber = "0683006027",
@@ -186,7 +189,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("26af7842-53e0-4680-96cb-8c02a696e59f"),
                             Email = "l.wilkins@gmail.com",
-                            HashPassword = "$2a$11$WHijd8LmNOMz6ztD79Nk3eqrPtF1wu3P.Egb1qDo1SAV0tnj98FZi",
+                            HashPassword = "$2a$11$61eoJwZ/Mi19s3LUA1ZGNeCbjMMn2W2oKIoVDesEcw.FXqY8BF.1u",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Lacey Wilkins",
                             PhoneNumber = "0683006024",
@@ -196,7 +199,7 @@ namespace Car.Demo.Migrations
                         {
                             Id = new Guid("7e892c70-763f-456e-b392-cb9211e681d3"),
                             Email = "s.newman@gmail.com",
-                            HashPassword = "$2a$11$Hove00D5hZTc25mXhEwWL.WRbe.cd4PYUnW2HF3N5x/H.7pF7pmA.",
+                            HashPassword = "$2a$11$G9LgGbBizj23B5XLqnQvKe5EjYMZ7cOxlHmKEOiBzAwaA5oeBMnA.",
                             LastChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Safwan Newman",
                             PhoneNumber = "0683006024",

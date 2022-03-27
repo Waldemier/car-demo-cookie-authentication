@@ -1,4 +1,3 @@
-using Car.Demo.Common;
 using Car.Demo.DLL;
 using Car.Demo.DLL.Entities;
 using Car.Demo.DLL.Repositories;
@@ -24,6 +23,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
 builder.Services.AddScoped<IRepository<Car.Demo.DLL.Entities.Car>, Repository<Car.Demo.DLL.Entities.Car>>();
+builder.Services.AddScoped<IRepository<Company>, Repository<Company>>();
+builder.Services.AddScoped<IRepository<Subscription>, Repository<Subscription>>();
 builder.Services.AddScoped<ISecurityService, SecurityService>();
 builder.Services.AddScoped<HelperService>();
 

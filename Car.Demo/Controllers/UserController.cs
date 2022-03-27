@@ -4,6 +4,7 @@ using Car.Demo.Models;
 using Car.Demo.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Car.Demo.Controllers;
 
@@ -25,7 +26,12 @@ public class UserController: ControllerBase
     public async Task<ActionResult<User>> ChangeProfile(UserToUpdate userToUpdate)
     {
         var userId = _securityService.GetCurrentUserId();
-        var user = await _userRepository.GetByIdAsync(Guid.Parse(userId!));
+        var user = await _userRepository.Sql().FirstOrDefaultAsync(x => x.Id.Equals(Guid.Parse(userId!)));
+
+        if (user is null)
+        {
+            throw new NullReferenceException("User has not been found.");
+        }
         
         user.Email = userToUpdate.Email;
         user.PhoneNumber = userToUpdate.PhoneNumber;

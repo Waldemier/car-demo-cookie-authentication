@@ -12,6 +12,8 @@ public class CarDbContext: DbContext
     public DbSet<User>? Users { get; set; }
     
     public DbSet<Car>? Cars { get; set; }
+    
+    public DbSet<Company>? Companies { get; set; }
 
     #endregion
 
@@ -59,6 +61,27 @@ public class CarDbContext: DbContext
         car.Property(x => x.Price).IsRequired();
         car.Property(x => x.Country).IsRequired();
 
+        var company = modelBuilder.Entity<Company>();
+        
+        company.HasKey(x => x.Id);
+        company.Property(x => x.Name).IsRequired();
+
+        user.HasMany(x => x.Companies)
+            .WithMany(x => x.Users)
+            .UsingEntity<Subscription>(
+                builder => builder.HasOne(s => s.Company)
+                    .WithMany(c => c.Subscriptions)
+                    .HasForeignKey(s => s.CompanyId),
+                builder => builder.HasOne(s => s.User)
+                    .WithMany(u => u.Subscriptions)
+                    .HasForeignKey(s => s.UserId),
+                builder =>
+                {
+                    builder.HasKey(s => new { s.UserId, s.CompanyId });
+                    builder.ToTable("Subscription");
+                }
+            );
+        
         #endregion
         
         #region Seeding
@@ -122,6 +145,25 @@ public class CarDbContext: DbContext
                     Country = "Germany",
                     PublisherId = Guid.Parse("dd2e3a6b-ec8f-4e9f-a72c-57e08f779f58"),
                     Price = 20000
+                }
+            );
+
+        modelBuilder.Entity<Company>()
+            .HasData(
+                new Company()
+                {
+                    Id = Guid.Parse("a9ac07e2-2402-480d-9b3e-fcd0da8d2f64"),
+                    Name = "Mercedes-benz"
+                },
+                new Company()
+                {
+                    Id = Guid.Parse("bc0a09f3-0fdd-4a8b-a419-86235a775760"),
+                    Name = "Audi"
+                },
+                new Company()
+                {
+                    Id = Guid.Parse("7ac01ada-b23d-4fa8-8b45-a5f6ef0847c8"),
+                    Name = "BMW"
                 }
             );
 
